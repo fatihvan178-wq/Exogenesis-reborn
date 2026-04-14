@@ -1,4 +1,4 @@
-# Exogenesis
+# Exogenesis Reborn
 
 ![icon](https://github.com/AureusStratus/ExoGenesis/assets/68311340/1ce3e927-85c3-4725-a2b0-8853f2476afd)
 
