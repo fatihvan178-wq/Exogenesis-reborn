@@ -1,10 +1,9 @@
-name: Java CI with Gradle
+name: Build Exogenesis Multiplatform
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master", "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -21,7 +20,6 @@ jobs:
 
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
-      # Langkah ini memastikan ANDROID_HOME dan platform android.jar tersedia
 
     - name: Add d8 to PATH
       run: |
@@ -32,12 +30,13 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build with Gradle
-      # Menggunakan 'deploy' sesuai isi build.gradle kamu untuk menggabungkan Desktop + Android
-      run: ./gradlew deploy
+    - name: Build Desktop and Android Jars
+      # Menjalankan dua task sekaligus
+      run: ./gradlew jar jarAndroid
 
-    - name: Upload a Build Artifact
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: exo-but-java
+        name: Exogenesis-Pack
+        # Ini akan mengambil file Desktop.jar dan Android.jar
         path: build/libs/*.jar
